@@ -3,18 +3,26 @@ class Solution
   public:
     int findMin(vector<int>& nums) 
     {
-        int s=0,e=nums.size()-1,ans=min(nums[e],nums[s]);
-        while(s<=e)
+       int start = 0, end = nums.size() - 1, mid = 0;
+        
+       int ans = min( nums[start], nums[end] );
+        
+        while( start <= end )
         {
-            int m=s+(e-s)/2;
-         
-            if(nums[m]>nums[e]&&nums[m]>=nums[s])
-                s=m+1;
-            else 
-                e=m-1;
+            mid = start + ( end -start ) / 2;
             
-            ans=min(nums[m],ans);
+            if( nums[mid] > nums[end]  )
+            {
+                start = mid + 1;
+            }
+            else
+            {
+                end = mid - 1;
+            }
+            
+            ans = min( nums[mid] , ans );
         }
-        return ans;
+        
+        return ans ;
     }
 };
