@@ -10,11 +10,8 @@ class Solution
         while( right < n )
         {
             product *= nums[right];
-            
            while( product >= k && right > left )
-            {
                 product = ( product / nums[left++] );
-            }
             
             if( product < k )
             count += right -left  + 1;
