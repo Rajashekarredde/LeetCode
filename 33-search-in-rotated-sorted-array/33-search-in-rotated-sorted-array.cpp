@@ -2,12 +2,32 @@ class Solution {
 public:
     int search(vector<int>& nums, int tar) 
     {  
+        int start = 0, mid = 0;
         
-        for( int i = 0 ; i< nums.size(); ++i )
+        int end = nums.size() - 1;
+        
+        while( start <= end )
         {
-            if( tar == nums[i])
+            mid = start + ( end - start ) / 2;
+            
+            if( nums[mid] == tar )
             {
-                return i;
+                return mid;
+            }
+            
+            if( nums[start] <= nums[mid] )
+            {
+                if( tar >= nums[start] && tar < nums[mid] )
+                   end = mid - 1;
+                else 
+                    start = mid + 1;
+            }
+            else
+            {
+                if( tar > nums[mid] && tar <= nums[end] )
+                    start = mid + 1;
+                else
+                    end = mid - 1;
             }
         }
         
