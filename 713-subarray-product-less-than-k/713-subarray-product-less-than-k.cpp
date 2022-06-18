@@ -3,21 +3,26 @@ class Solution
    public:
     int numSubarrayProductLessThanK(vector<int>& nums, int k) 
     {
-        int left = 0, right = 0, count =0, product = 1;
-        
-        int n =nums.size();
+        int left = 0, right =0, product = 1;
+        int n = nums.size();
+        int count = 0;
         
         while( right < n )
         {
-            product *= nums[right];
-           while( product >= k && right > left )
-                product = ( product / nums[left++] );
+             product *= nums[right];
             
-            if( product < k )
-            count += right -left  + 1;
+             while( product >= k && right > left)
+             {
+                 product /= nums[ left++ ];
+             }
             
-            right++;
+             if( product < k )
+             {
+                 count += ( right - left ) + 1;
+             }
+            
+             right ++;
         }
-        return count;
+        return count ;
     }
 };
