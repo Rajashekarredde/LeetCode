@@ -4,6 +4,7 @@ int pivotIndex(vector<int>& nums)
 {
     int rsum=0;
     int lsum=0;
+    
     for(int i=1;i<nums.size();i++)
     {
         rsum=rsum+nums[i];
@@ -17,8 +18,8 @@ int pivotIndex(vector<int>& nums)
         {
             lsum=lsum+nums[i];
             
-            if(i+1<nums.size())
-                rsum=rsum-nums[i+1];
+            if( i+1 < nums.size() )
+                rsum = rsum-nums[i+1];
         }
     }
     return -1;
