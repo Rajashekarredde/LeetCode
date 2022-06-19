@@ -3,15 +3,20 @@ public:
     string reverseStr(string s, int k) 
     {
         int i = 0;
-        while (i < s.size()){
-            if (i % (2 * k) == 0){
-                if (i + k > s.size()) {
+        while (i < s.size())
+        {
+            if (i % (2 * k) == 0)
+            {
+                if (i + k > s.size()) 
+                {
                     reverse(s.begin() + i, s.end());
-                } else {
+                } 
+                else 
+                {
                     reverse(s.begin() + i, s.begin() + i + k);
                 }
             }
-            i ++;
+            i++;
         }
         return s;
     }
