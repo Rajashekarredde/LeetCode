@@ -2,7 +2,8 @@ class Solution {
 public:
     int findMiddleIndex(vector<int>& nums) 
     {
-        int rsum=0;
+    
+    int rsum=0;
     int lsum=0;
     
     for(int i=1;i<nums.size();i++)
