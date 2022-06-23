@@ -4,28 +4,30 @@ class Solution
     int subarraySum(vector<int>& nums, int k) 
     {
         unordered_map<int, int> store;
+        int sum = 0;
+        int count = 0, n = nums.size();
         
-        int n = nums.size();
-        int count = 0, sum =0;
-        
-        for( int i = 0; i<n ; ++i )
+        for( int i= 0; i<n ; ++i )
         {
-            sum = sum + nums[i];
-                
-            if( sum == k ) count++;
+            sum += nums[i];
             
-            if(  store.find( sum - k ) != store.end() )
+            if( sum == k )
             {
-                count = store[ sum - k] + count;
+                 count++;
             }
             
-            if( store.find(sum) == store.end() )
+            if( store.find( sum - k ) != store.end() )
             {
-                store[ sum ] = 1;
+                count = count + store[ sum - k ];
+            }
+            
+            if( store.find( sum ) != store.end() )
+            {
+                store[sum]++;
             }
             else
             {
-                store[sum]++;
+                store[sum] = 1;
             }
         }
         return count;
