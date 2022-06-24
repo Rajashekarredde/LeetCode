@@ -5,6 +5,15 @@ public:
         unordered_set< int >store;
         int n = nums.size();
         
+        if(n==0)
+        {
+            return 0; 
+        }
+        if(n==1)
+        {
+            return 1;
+        } 
+        
         for( int i=0; i<n; ++i )
         {
             if( store.find(nums[i]) == store.end() )
