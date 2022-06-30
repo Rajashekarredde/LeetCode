@@ -2,42 +2,42 @@ class Solution {
 public:
     bool wordPattern(string pattern, string s) 
     {
-        unordered_map<string, char> letters;
-        unordered_map<char, bool> visited;
+        string a;
+        vector< string > store;
         
-        string str;
-        vector<string> store;
+        unordered_map< char, string > temp;
+        unordered_map< string, bool > visited;
+
         
-        for( int i = 0; i<s.length(); ++i )
+        for( int i =0; i<s.size(); ++i )
         {
-            if( s[i] != ' ' )
-                str.push_back( s[i] );
+            if( s[i] ==  ' ' )
+            {
+                store.push_back( a );
+                a.clear();
+            }
             else
-            {
-                store.push_back( str );
-                str.clear();
-            }
+                a.push_back( s[i] );
         }
+        store.push_back( a );
         
-        store.push_back( str );
-     
-        const int sSize = pattern.size(); 
+        int m = pattern.length();
+        int n = store.size();
         
-        if ( sSize != store.size() ) return false;
-    
-        for (int i = 0; i < sSize; ++i)   
-        {               
-            if ( letters.find( store[i]) == letters.end() && visited[ pattern[i]] ==                      false)
+        if( m != n ) return false;
+        
+        for( int i =0; i<store.size(); ++i )
+        {
+            if( temp.find( pattern[i] ) == temp.end() && 
+                visited[ store[i] ] == false )
             {
-                letters[store[i]] = pattern[i];
-                visited[pattern[i]] = true;
+                temp[ pattern[i] ] = store[i];
+                visited[ store[i] ] = true;
             }
-            else if (letters[store[i]] != pattern[i])
-            {
+            
+            if( temp[ pattern[i]] != store[i] )
                 return false;
-            }
         }
-       return true;
-        
+        return true;
     }
 };
