@@ -3,22 +3,20 @@ class Solution
   public:
     int subarraySum(vector<int>& nums, int k) 
     {
-        unordered_map<int, int> store;
-        int sum = 0;
-        int count = 0, n = nums.size();
-        
-        for( int i= 0; i<n ; ++i )
+        unordered_map< int, int > store;     
+        int sum = 0, count =0;
+        for( int i = 0 ; i< nums.size() ; ++ i )
         {
             sum += nums[i];
             
             if( sum == k )
             {
-                 count++;
-            }
+                count++;
+            }   
             
             if( store.find( sum - k ) != store.end() )
             {
-                count = count + store[ sum - k ];
+                count = count + store[ sum - k];
             }
             
             if( store.find( sum ) != store.end() )
@@ -30,6 +28,6 @@ class Solution
                 store[sum] = 1;
             }
         }
-        return count;
+        return count++;
     }
 };
