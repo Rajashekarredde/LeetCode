@@ -2,28 +2,28 @@ class Solution {
 public:
     bool isIsomorphic(string s, string t) 
     {
-       unordered_map< int, int> store;
-       unordered_map< int, bool> visited;
+       unordered_map< char, char >store;
+       unordered_map< char, bool> visited;
        
-        int m = s.length();
-         int n = t.length();
+        int m = s.length(); int n = t.length();
         
-        if( m != n ) return false;
+        if( m != n )
+            return false;
         
-        for( int i =0; i<m ; ++i )
-        {
-            
-            if( store.find( s[i] ) == store.end() && visited[ t[i] ] == false )
-            {
-                store[ s[i] ] = t[i];
-                visited[ t[i] ] = true;
-            }
-            
-             if( store[ s[i]] != t[i]  )
-             {
-                 return false;
-             }
-        }
-        return true;
+       for( int i = 0; i<m; ++i )
+       {
+           if( store.find( s[i] ) == store.end() && 
+               visited[ t[i] ] == false )
+           {
+               store[ s[i] ] = t[i];
+               visited[ t[i] ] = true;
+           }
+           
+           if( store[ s[i] ] != t[i] )
+           {
+               return false;
+           }
+       }
+       return true;
     }
 };
