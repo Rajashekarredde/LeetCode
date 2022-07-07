@@ -3,12 +3,13 @@ class Solution
     public:
     string convertToTitle(int columnNumber) 
     {
-       string ColumnTitle;   
-       while(columnNumber--)
-       {          
-          ColumnTitle = char('A' + columnNumber % 26) + ColumnTitle;
-          columnNumber /= 26;
-       }
-       return ColumnTitle;
+        string ans;
+        
+        while( columnNumber-- )
+        {
+            ans = char( 'A' + columnNumber%26 ) + ans;
+            columnNumber = columnNumber / 26;
+        }
+        return ans;
     }
 };
