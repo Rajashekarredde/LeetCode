@@ -1,13 +1,14 @@
-class Solution {
-public:
-    int titleToNumber(string columnTitle) 
+class Solution 
+{
+    public:
+    string convertToTitle(int columnNumber) 
     {
-        int result = 0;
-        for(char c : columnTitle)
-        {
-            int d = c - 'A' + 1;
-            result = result * 26 + d;
-        }
-        return result;
+       string ColumnTitle;   
+       while(columnNumber--)
+       {          
+          ColumnTitle = char('A' + columnNumber % 26) + ColumnTitle;
+          columnNumber /= 26;
+       }
+       return ColumnTitle;
     }
 };
