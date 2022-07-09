@@ -33,7 +33,6 @@ public:
             right = right->next;
         }
         
-        cout<<left->val;
         left->next = left->next->next;
         
         return dummy->next;
