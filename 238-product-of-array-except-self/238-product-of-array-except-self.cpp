@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) 
     {
-       int n = nums.size();
+        int n = nums.size();
        int mul = nums[0];
        
         vector<int> store(n, 0);
@@ -24,5 +24,6 @@ public:
             mul = mul * nums[i];
         }
         return store;
+        
     }
 };
