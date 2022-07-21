@@ -13,19 +13,21 @@ class Solution {
 public:
     int maxPathSum(TreeNode* root)
     {
-        int maxi = INT_MIN;
+        int maxi = INT_MIN ;
         solve( root, maxi );
         return maxi;
     }
     
-    int solve( TreeNode *root, int &maxi)
+    int solve( TreeNode *root, int &maxi )
     {
-       if( root == nullptr ) return 0;
+        if( root == nullptr )
+            return 0;
+        int l = max( 0, solve( root->left, maxi) );
+        int r = max( 0, solve( root->right, maxi) );
         
-        int left = max( 0, solve(root->left, maxi));
-        int right = max( 0, solve(root->right, maxi));
-        maxi = max( maxi, left+right+root->val);
+        maxi = max( maxi, l+r+root->val);
         
-        return root->val + max( left, right );
+        return root->val + max( l, r);
     }
+    
 };
