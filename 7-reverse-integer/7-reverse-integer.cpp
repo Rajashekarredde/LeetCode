@@ -3,19 +3,21 @@ public:
     int reverse( long long int x) 
     {
         long long int afterRev = 0;
+        long long int beforeRev = 0;
         bool isNeg =(  (x < 0 ) ? true : false ); 
-        int rem ;
-        while(x)
+        x = abs(x);
+        
+        while( x )
         {
-            rem = x%10;
-            afterRev = ( afterRev * 10 ) + rem;
+            afterRev = ( afterRev * 10 ) + ( x % 10 );
             x = x/10;
         }
-        if(  INT_MIN < afterRev && afterRev < INT_MAX ) 
-        {  
-            //afterRev = ( isNeg ? (afterRev * -1 ) : afterRev );
-            return afterRev;
-        }
-        else return 0;
+        
+        x = isNeg ? ( -1 * afterRev ) : afterRev;
+        
+        if( INT_MIN < afterRev && afterRev < INT_MAX )
+            return x;
+        
+        return 0;
     }
 };
