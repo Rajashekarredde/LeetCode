@@ -2,58 +2,33 @@ class Solution {
 public:
     bool isValid(string s) 
     {
-        std::vector<char> sun;
-        for( int i = 0; i<s.length(); ++i )
+        int n = s.length();
+        if( n < 2)
+            return false;
+        
+        stack<char> store;
+        for( int i = 0; i<n; ++i )
         {
             if( s[i] == '(' || 
-                s[i] == '[' ||
-                s[i] == '{'  )
+                s[i] == '{' ||
+                s[i] == '[' )
             {
-                sun.push_back(s[i]);
+                store.push(s[i]);
+            }
+            else if( !store.empty() )
+            {
+               char c = store.top();
+               store.pop();
+               if( (s[i] == ')' && c != '(' ) ||
+                   (s[i] == ']' && c != '[' ) ||
+                   (s[i] == '}' && c != '{' ) )
+                   return false;
             }
             else
-            {
-                
-            char a = getValidChar( s[i] );
-                
-            if( !sun.size() ) return false;
-            
-            if( a == ' ' )
-            {
                 return false;
-            }
-            else if( sun.back() != a )
-            {   
-                return false;
-            }
-            else
-            {
-               sun.pop_back();
-            }
         }
-            
-        }
-        if( !sun.size() )
+        if( store.empty() )
         return true;
-        else
         return false;
-    }
-    
-    char getValidChar( char a )
-    {
-        switch(a)
-        {
-            case ')' :
-                return '(';
-                
-            case ']' :
-                return '[';
-                
-            case '}' :
-                return '{';
-                
-            default :
-                return ' ';
-        }
     }
 };
