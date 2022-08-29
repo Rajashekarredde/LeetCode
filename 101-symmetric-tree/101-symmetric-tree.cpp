@@ -13,8 +13,6 @@ class Solution {
 public:
     bool isSymmetric(TreeNode* root) 
     {
-        if( !root )
-            return true;
         return isSame( root->left, root->right );
     }
     
