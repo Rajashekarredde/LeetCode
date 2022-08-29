@@ -24,6 +24,7 @@ public:
         
         int l = traversal( root->left );
         if( l == -1 ) return -1;
+        
         int r = traversal( root-> right );
         if ( r == -1 ) return -1;
         
