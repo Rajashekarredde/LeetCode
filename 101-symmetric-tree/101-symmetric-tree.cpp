@@ -13,14 +13,17 @@ class Solution {
 public:
     bool isSymmetric(TreeNode* root) 
     {
+        if( !root )
+            return true;
         return isSame( root->left, root->right );
     }
     
     bool isSame( TreeNode *p, TreeNode *q )
     {
-        if( !p && !q ) return true;
-        else if( !p || !q ) return false;
-        
-        return isSame(p->left, q->right) && isSame(p->right, q->left ) && p->val == q->val;
+        if( !p && !q )
+            return true;
+        else if( !p || !q )
+            return false;
+        return ( isSame(p->left, q->right) && isSame(p->right, q->left) && p->val == q->val );
     }
 };
