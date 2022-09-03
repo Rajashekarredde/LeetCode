@@ -9,20 +9,45 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+class bst
+{
+    public:
+    stack<TreeNode*> st;
+    bst( TreeNode *root )
+    {
+        pushAll( root );
+    }
+    
+    int next()
+    {
+        TreeNode *temp = st.top();
+        st.pop();
+        pushAll( temp->right );
+        return temp->val;
+    }
+    
+    void pushAll( TreeNode *node )
+    {
+        while( node )
+        {
+            st.push( node );
+            node = node->left;
+        }
+    }
+};
+
 class Solution {
 public:
-    void traversal( TreeNode *root, vector<int>&ans )
-    {
-        if( !root ) return;
-        traversal( root->left, ans);
-        ans.push_back(root->val);
-        traversal( root->right, ans);
-    }
     
     int kthSmallest(TreeNode* root, int k) 
     {
-        vector< int> ans;
-        traversal(root, ans);
-        return ans[k-1];
+        bst l(root);
+        int ele = 0;
+        while( k-- )
+        {
+            ele = l.next();
+        }
+        return ele;
     }
 };
