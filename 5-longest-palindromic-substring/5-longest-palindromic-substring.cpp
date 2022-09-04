@@ -5,9 +5,9 @@ public:
         int l, h, start =0, end = 1;
         int n = s.length();
         
-        for( int i = 1; i<n; ++i )
+        for( int i = 0; i<n; ++i )
         {
-            l = i - 1;
+            l = i;
             h  = i;
             
             while( l >=0 && h < n && s[l] == s[h] )
@@ -20,7 +20,7 @@ public:
                 l--; h++;
             }
             
-            l = i - 1;
+            l = i;
             h  = i + 1;
             
             while( l >=0 && h < n && s[l] == s[h] )
