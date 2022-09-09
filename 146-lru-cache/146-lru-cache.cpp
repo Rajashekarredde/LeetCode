@@ -13,25 +13,28 @@ public:
             val = _val;
         }
     };
-    node *head = new node(-1, -1 );
-    node *tail = new node(-1, -1 );
     
-    unordered_map< int, node* > mp;
+    unordered_map<int, node*> mp;
     int cap;
+    
+    node *head = new node(-1, -1);
+    node *tail = new node( -1, -1);
+    
+   
     LRUCache(int capacity) 
     {
+        cap = capacity;
         head->next = tail;
         tail->prev = head;
-        cap = capacity;
     }
     
     void addNode( node *temp )
     {
-        node *store = head->next;
-        head->next = temp;
-        temp->prev = head;
-        store->prev = temp;
-        temp->next =  store;
+       node *store = head->next;
+       head->next = temp;
+       temp->next = store;
+       temp->prev = head;
+       store->prev = temp;
     }
     
     void deleteNode( node *temp )
@@ -50,7 +53,7 @@ public:
             int ans = temp->val;
             mp.erase(key_);
             deleteNode( temp );
-            addNode( temp );
+            addNode(temp );
             mp[key_] = head->next;
             return ans;
         }
@@ -59,18 +62,18 @@ public:
     
     void put(int key_, int value) 
     {
-        if( mp.find( key_) != mp.end() )
+        if( mp.find(key_) != mp.end() )
         {
             node *temp = mp[key_];
             mp.erase(key_);
-            deleteNode( temp );
+            deleteNode(temp);
         }
-        if( mp.size() == cap )
+        if( cap == mp.size() )
         {
-            mp.erase( tail->prev->key );
-            deleteNode( tail->prev );
+           mp.erase( tail->prev->key );
+           deleteNode( tail->prev );
         }
-        addNode( new node( key_, value ) );
+        addNode( new node(key_, value ));
         mp[key_] = head->next;
     }
 };
