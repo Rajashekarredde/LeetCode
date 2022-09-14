@@ -16,22 +16,20 @@ public:
         if( !root )
             return ;
         
-        TreeNode *temp = root;
-        TreeNode *prev = nullptr;
-        while( temp )
+        TreeNode *node = root;
+        while( node )
         {
-            if( temp->left != nullptr )
+            if( node->left != nullptr )
             {
-                prev = temp->left;
-                while( prev ->right )
-                    prev = prev->right;
-                
-                prev->right =temp->right;
-                temp->right = temp->left;
-                temp->left = nullptr;
+                TreeNode *temp = node->left;
+                while( temp->right )
+                    temp = temp->right;
+                temp->right = node->right;
+                node->right = node->left;
+                node->left = nullptr;
             }
-            temp = temp->right;
+            
+            node = node->right;
         }
-      
     }
 };
