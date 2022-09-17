@@ -31,17 +31,14 @@ public:
                 count += capArr[i];
             else
             {
-                //if( prevMid < capArr[i] )
+                count -= prevMid;
+                //if( prevMid != 1)
                 {
-                    count -= prevMid;
-                     if( prevMid != 1)
-                    {
-                        prevMid =( prevMid/2) * 2;
-                        count += prevMid;
-                    }
-                    prevMid = capArr[i];
+                    prevMid =( prevMid/2) * 2;
                     count += prevMid;
                 }
+                prevMid = capArr[i];
+                count += prevMid;
             }
         }
         
@@ -54,17 +51,14 @@ public:
                 count += smallArr[i];
             else
             {
-                //if( prevMid < smallArr[i]  )
+                count -= prevMid;
+                //if( prevMid != 1)
                 {
-                    count -= prevMid;
-                    if( prevMid != 1)
-                    {
-                        prevMid =( prevMid/2) * 2;
-                        count += prevMid;
-                    }
-                    prevMid = smallArr[i];
+                    prevMid =( prevMid/2) * 2;
                     count += prevMid;
                 }
+                prevMid = smallArr[i];
+                count += prevMid;
             }
         }
         
