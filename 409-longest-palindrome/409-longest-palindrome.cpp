@@ -1,5 +1,25 @@
 class Solution {
 public:
+    void solver( int arr[], int &count, int &prevMid )
+    {
+         for( int i = 0; i<26; i++ )
+        {
+            if( arr[i]  == 0 )
+                continue;
+            
+            if( arr[i]%2 == 0 )
+                count += arr[i];
+            else
+            {
+                count -= prevMid;
+                prevMid =( prevMid/2) * 2;
+                count += prevMid;
+                prevMid = arr[i];
+                count += prevMid;
+            }
+        }        
+    }
+    
     int longestPalindrome(string s) 
     {
         int capArr[26] = {0};
@@ -22,46 +42,8 @@ public:
         
         int prevMid = 0;
         int count = 0;
-        for( int i = 0; i<26; i++ )
-        {
-            if( capArr[i]  == 0 )
-                continue;
-            
-            if( capArr[i]%2 == 0 )
-                count += capArr[i];
-            else
-            {
-                count -= prevMid;
-                if( prevMid != 1)
-                {
-                    prevMid =( prevMid/2) * 2;
-                    count += prevMid;
-                }
-                prevMid = capArr[i];
-                count += prevMid;
-            }
-        }
-        
-        for( int i = 0; i<26; i++ )
-        {
-              if( smallArr[i]  == 0 )
-                continue;
-            
-            if( smallArr[i]%2 == 0 )
-                count += smallArr[i];
-            else
-            {
-                count -= prevMid;
-                if( prevMid != 1)
-                {
-                    prevMid =( prevMid/2) * 2;
-                    count += prevMid;
-                }
-                prevMid = smallArr[i];
-                count += prevMid;
-            }
-        }
-        
+        solver( capArr, count, prevMid );
+        solver( smallArr, count, prevMid );
         return count;
     }
 };
