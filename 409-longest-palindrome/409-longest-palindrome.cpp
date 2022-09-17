@@ -32,7 +32,7 @@ public:
             else
             {
                 count -= prevMid;
-                //if( prevMid != 1)
+                if( prevMid != 1)
                 {
                     prevMid =( prevMid/2) * 2;
                     count += prevMid;
@@ -52,7 +52,7 @@ public:
             else
             {
                 count -= prevMid;
-                //if( prevMid != 1)
+                if( prevMid != 1)
                 {
                     prevMid =( prevMid/2) * 2;
                     count += prevMid;
