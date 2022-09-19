@@ -11,9 +11,7 @@ public:
             if( arr[left] < arr[right] )
                 left++;
             else if( arr[left] > arr[right] )
-            {
                right--; 
-            }
             else
             {
                 left++; right--;
