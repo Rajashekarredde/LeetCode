@@ -2,9 +2,12 @@ class Solution {
 public:
     int trap(vector<int>& height) 
     {
-        int maxLeft = 0, maxRight = 0;
+        int n = height.size();
         
-        int left = 0, right = height.size()-1;
+        int maxLeft = INT_MIN, maxRight = INT_MIN;
+        
+        int left = 0, right = n-1;
+        
         int ans = 0;
         
         while( left <= right )
@@ -14,15 +17,15 @@ public:
                 if( maxLeft < height[left] )
                     maxLeft = height[left];
                 else
-                    ans += (maxLeft - height[left] );
+                    ans += ( maxLeft - height[left] );
                 left++;
             }
             else
             {
-                 if( maxRight < height[right] )
+                if( maxRight < height[right] )
                     maxRight = height[right];
                 else
-                    ans += (maxRight - height[right] );
+                    ans += ( maxRight - height[right] );
                 right--;
             }
         }
