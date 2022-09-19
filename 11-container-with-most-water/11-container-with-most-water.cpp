@@ -10,12 +10,8 @@ public:
             ans = max( ans, ( min( arr[left], arr[right] )*( right - left) ) ) ;
             if( arr[left] < arr[right] )
                 left++;
-            else if( arr[left] > arr[right] )
+            else 
                right--; 
-            else
-            {
-                left++; right--;
-            }
         }
         return ans;
     }
