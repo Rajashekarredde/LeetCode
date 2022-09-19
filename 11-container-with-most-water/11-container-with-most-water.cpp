@@ -2,16 +2,17 @@ class Solution {
 public:
     int maxArea(vector<int>& arr) 
     {
-        int left = 0; 
-        int right = arr.size() - 1;
+        int l = 0; 
+        int r = arr.size() - 1;
         int ans = INT_MIN;
-        while( left < right )
+        
+        while( l <= r )
         {
-            ans = max( ans, ( min( arr[left], arr[right] )*( right - left) ) ) ;
-            if( arr[left] < arr[right] )
-                left++;
-            else 
-               right--; 
+            ans = max( ans, ( min(arr[l], arr[r]) *( r - l ) ) );
+            if( arr[l] < arr[r] )
+                l++;
+            else
+                r--;
         }
         return ans;
     }
