@@ -2,21 +2,16 @@ class Solution {
 public:
     int binarySearch( vector<int>& nums )
     {
-        int n = nums.size();
-        
-        if( n == 0 )
-            return 0;
-        
         vector<int> ans;
+        int n = nums.size();
         ans.push_back( nums[0] );
-        
-        for( int i = 1; i<n; ++i )
+        for( int i = 1; i<n; i++ )
         {
-            if( nums[i] > ans.back() )
+            if( ans.back() < nums[i] )
                 ans.push_back( nums[i] );
             else
             {
-                int index = lower_bound( ans.begin(), ans.end(), nums[i] ) -  ans.begin() ;
+                int index = lower_bound( ans.begin(), ans.end(), nums[i] ) - ans.begin();
                 ans[index] = nums[i];
             }
         }
@@ -45,7 +40,8 @@ public:
     {
         int n = nums.size();
         vector< vector<int> >dp(n, vector<int>(n+1, -1) );
-        int ans = solver( nums, 0, -1, dp, n );
+        //int ans = solver( nums, 0, -1, dp, n );
+        int ans = binarySearch( nums );
         return ans;
     }
 };
