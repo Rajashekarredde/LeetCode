@@ -13,23 +13,24 @@ class Solution {
 public:
     bool isBalanced(TreeNode* root) 
     {
-        int height = traversal ( root );
-        if( height == -1) return false;
-        return true;
+       int h = solver( root );
+       if( h == -1)
+           return false;
+    return true;
     }
     
-    int traversal( TreeNode *root )
+    int solver( TreeNode *root )
     {
-        if ( !root ) return 0;
-        
-        int l = traversal( root->left );
+        if( !root)
+            return 0;
+        int l = solver( root->left );
         if( l == -1 ) return -1;
         
-        int r = traversal( root-> right );
-        if ( r == -1 ) return -1;
+        int r = solver( root->right );
+        if( r == -1 ) return -1;
         
-        if( abs( l - r) > 1) return -1;
+        if( abs(l-r) > 1 ) return -1;
         
-        return 1+ max( l,r);
+        return 1 + max( l, r );
     }
 };
