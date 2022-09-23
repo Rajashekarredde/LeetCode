@@ -37,6 +37,7 @@
 //     }
 // };
 
+
 class WordDictionary 
 {
    public:
@@ -69,29 +70,28 @@ class WordDictionary
     
     bool search(string word) 
     {
-       return solve( word, 0, root );
+        return isFound( word, 0, root );
     }
     
-    bool solve( string &word, int idx, trie *cur )
+    bool isFound( string &word, int idx, trie *cur )
     {
         if( idx == word.size() ) return cur->isEnd;
         
-        if( word[idx] == '.' )
+        if( word[idx] == '.')
         {
             for( int i = 0; i<26; i++ )
-                if( cur->child[i] && solve( word, idx+1, cur->child[i] ) )
+                if( cur->child[i] && isFound( word, idx+1, cur->child[i] ) )
                     return true;
         }
         else
         {
             int i = word[idx] - 'a';
-            if( cur->child[i] && solve( word, idx+1, cur->child[i] ) )
-                    return true;
+            if( cur->child[i] && isFound( word, idx+1, cur->child[i] ) )
+                return true;
         }
         return false;
     }
 };
-
 
 
 
