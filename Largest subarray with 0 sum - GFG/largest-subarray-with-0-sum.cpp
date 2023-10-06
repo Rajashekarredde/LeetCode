@@ -20,7 +20,7 @@ class Solution{
         {
             sum += nums[i];
             if( sum == 0 )
-                ans = i+1;
+                ans = max(ans, i+1);
             long long rem = sum;
             if( mp.find(rem) != mp.end() )
             {
