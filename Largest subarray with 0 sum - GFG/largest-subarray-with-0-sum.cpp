@@ -12,28 +12,25 @@ class Solution{
     public:
     int maxLen(vector<int>&nums, int k)
     {   
-         long long sum = 0;
+        long long sum = 0;
         int ans = 0;
         int n = nums.size();
-        unordered_map<long long, int> mp;
-        
-        for (int i = 0; i < n; ++i)
+        unordered_map<long long, int>mp;
+        for( int i = 0; i<n; ++i )
         {
             sum += nums[i];
-            if (sum == 0)
-                ans = i + 1;
-            
+            if( sum == 0 )
+                ans = i+1;
             long long rem = sum;
-            if (mp.find(rem) != mp.end())
+            if( mp.find(rem) != mp.end() )
             {
                 int idx = i - mp[rem];
                 ans = max(ans, idx);
             }
             
-            if (mp.find(sum) == mp.end())
-                mp[sum] = i;
+            if( mp.find(sum) == mp.end()) 
+            {   mp[sum] = i; }
         }
-        
         return ans;
     }
 };
